@@ -42,7 +42,7 @@ public class DataMunger {
 		getConditionsPartQuery(queryString);
 		getConditions(queryString);
 		getLogicalOperators(queryString);
-		//getFields(queryString);
+		getFields(queryString);
 		getOrderByFields(queryString);
 		getGroupByFields(queryString);
 		//getAggregateFunctions(queryString);
@@ -112,9 +112,14 @@ public class DataMunger {
 	 * 2. The query might not contain where clause at all.
 	 */
 	public String getConditionsPartQuery(String queryString) {
-		String conditionPart=queryString.split("where")[1];
-
-		return conditionPart;
+		int i;
+		String[] conditionPart=queryString.split("where");
+		int n=conditionPart.length;
+		String result=conditionPart[1];
+		for(i=2;i<n;i++)
+			result=result+","+conditionPart[i];
+		System.out.print(result);
+		return result;
 
 	}
 
@@ -147,7 +152,7 @@ public class DataMunger {
 
 
 
-		return null;
+		return splitString;
 	}
 
 	/*
@@ -168,9 +173,10 @@ public class DataMunger {
 		int i;
 		String[] splitString=queryString.split("where")[1].trim().split("and");
 		int n=splitString.length;
+		String[] thisString=splitString;
 		for(i=0;i<n;i++) {
 		    System.out.println("Condition"+(i+1)+":");
-		    String[] thisString=splitString[i].trim().split(" ");
+		    thisString=splitString[i].trim().split(" ");
 		   
 		    	System.out.print("Variable:");
 		    	System.out.println(thisString[0]);	
@@ -182,7 +188,7 @@ public class DataMunger {
 		    	System.out.println(thisString[2]);	
 		}
 
-		return null;
+		return thisString;
 
 	}
 

@@ -141,8 +141,7 @@ public class DataMungerTest {
 				dataMunger.getBaseQuery("select city1,winner,player_match from ipl1.csv where season > 2014"));
 		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string.",
-				dataMunger
-						.getConditionsPartQuery("select city,winner,player_match from ipl1.csv where season1 > 2014"));
+				dataMunger.getConditionsPartQuery("select city,winner,player_match from ipl1.csv where season1 > 2014"));
 		assertNotNull(
 				"testGetColumnsWithWhereClauseFailure() : Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords.",
 
