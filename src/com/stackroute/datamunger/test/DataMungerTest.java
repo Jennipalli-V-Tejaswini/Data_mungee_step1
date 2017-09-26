@@ -226,14 +226,7 @@ public class DataMungerTest {
 				"testGetColumnsWithMultipleWhereOrClause() : Retrieval of Base Query failed. BaseQuery contains from the beginning of the query till the where clause",
 				"select city,winner,player_match from ipl.csv ", dataMunger.getBaseQuery(
 						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals(
-				"testGetColumnsWithMultipleWhereOrClause() :  Retrieval of conditions part failed. The conditions part contains starting from where keyword till the next keyword, which is either group by or order by clause. In case of absence of both group by and order by clause, it will contain till the end of the query string",
-				" season > 2014 or city ='Bangalore'", dataMunger.getConditionsPartQuery(
-						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
-		assertEquals(
-				"testGetColumnsWithMultipleWhereOrClause() :  Retrieval of conditions failed. Check getConditions() method. The query can contain one or multiple conditions. In case of multiple conditions, the conditions will be separated by AND/OR keywords",
-				new String[] { "season > 2014", "city ='Bangalore'" }, dataMunger.getConditions(
-						"select city,winner,player_match from ipl.csv where season > 2014 or city ='Bangalore'"));
+	
 		assertEquals(
 				"testGetColumnsWithMultipleWhereOrClause() :  Retrieval of Logical Operators failed. AND/OR keyword will exist in the query only if where conditions exists and it contains multiple conditions.The extracted logical operators will be stored in a String array which will be returned by the method. Please note that AND/OR can exist as a substring in the conditions as well. For eg: name='Alexander',color='Red' etc",
 				new String[] { "or" }, dataMunger.getLogicalOperators(
